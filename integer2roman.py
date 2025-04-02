@@ -63,7 +63,7 @@ Constraints:
 
 1 <= num <= 3999
 '''
-def intToRoman(num: int) -> str:
+def int2Roman(num: int) -> str:
     '''
     rule: read from left (highest decimal place) to right (lowest decimal place)
     Input: num = 3749
@@ -101,6 +101,22 @@ def intToRoman(num: int) -> str:
                 output.append(conv.get(divs[index]))
                 output.append(conv.get(divs[index-2]))
     return ''.join(output)
+
+def intToRoman(num: int) -> str:
+    roman_map = [
+    (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),
+    (100,  'C'), (90,  'XC'), (50,  'L'),  (40,  'XL'),
+    (10,   'X'), (9,   'IX'),  (5,   'V'),  (4,   'IV'),
+    (1,    'I')
+    ]
+    result = []
+
+    # repeatedly subtract the largest possible value, appending to the result:
+    for value, symbol in roman_map:
+        while num >= value:
+            result.append(symbol)
+            num -= value
+    return ''.join(result)
 
 if __name__ == "__main__":
     print(intToRoman(3749))
