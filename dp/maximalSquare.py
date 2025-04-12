@@ -24,6 +24,12 @@ def maximalSquare(matrix: List[List[str]]) -> int:
         '''
         using 2D dp array to fill out the max square on each cell that it can make
         to the right, down and diagonal
+        key intuition: A square can only grow as far as its shortest supporting edge lets it.
+        dp[i][j] answers: “If I put the bottom‑right corner of a square here, how big can it be?”
+
+        You need the smallest of the three adjacent squares to guarantee all edges are long enough.
+
+        Adding the current '1' lets you extend that minimum by 1.
         '''
         m, n = len(matrix), len(matrix[0]) #m, n -> rows, cols
         dp = [[0]* (n+1) for _ in range(m+1)]
