@@ -1,0 +1,31 @@
+from typing import List
+from collections import defaultdict, deque
+
+def find_course_schedule(num_courses: int, prerequisites: List[List[int]]) -> List[int]:
+    # Step 1: Build graph and in-degree map
+    graph = defaultdict(list)
+    in_degree = [0] * num_courses
+
+    for dest, src in prerequisites:
+        graph[src].append(dest)
+        in_degree[dest] += 1
+
+    # Step 2: Collect all nodes with in-degree 0
+    queue = deque([i for i in range(num_courses) if in_degree[i] == 0])
+    topo_order = []
+
+    # Step 3: BFS traversal
+    while queue:
+        course = queue.popleft()
+        topo_order.append(course)
+
+        for neighbor in graph[course]:
+            in_degree[neighbor] -= 1
+            if in_degree[neighbor] == 0:
+                queue.append(neighbor)
+
+    # Step 4: Check for cycle
+    if len(topo_order) == num_courses:
+        return topo_order
+    else:
+        return []
