@@ -10,7 +10,9 @@ class Trie:
     def insert(self, word: str) -> None:
         curr = self.root
         for ch in word:
-            curr = curr.children.setdefault(ch, TrieNode())
+            if ch not in curr.children:
+                curr.children[ch] = TrieNode()
+            curr = curr.children[ch]
         curr.is_end = True
 
     def search(self, word: str) -> bool:
