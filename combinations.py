@@ -14,6 +14,7 @@ def combine(n: int, k: int) -> List[List[int]]:
                 return 
             
             # Only loop until a point where there are enough remaining numbers
+            # If len(path) + (n - i + 1) < k, it's impossible to complete the combination, so we can skip.
             for i in range(start, n-(k-len(path))+2):
                     path.append(i)
                     dfs(i+1, path)
