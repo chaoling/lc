@@ -124,6 +124,7 @@ if __name__ == "__main__":
     for line in result2:
         print(f'"{line}"')
         # Output each justified line
+    
     words3 = ["Science","is","what","we","understand","well","enough","to","explain","to","a","computer.","Art","is","everything","else","we","do"]
     maxWidth3 = 20
     result3 = sol.fullJustify(words3, maxWidth3)

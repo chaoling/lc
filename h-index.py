@@ -46,3 +46,12 @@ class Solution:
                 return i
         
         return 0
+    
+# Example usage:
+sol = Solution()
+print(sol.hindex([3, 0, 6, 1, 5]))  # Output: 3
+print(sol.hindexbucket([3, 0, 6, 1, 5]))  # Output: 3       
+print(sol.hindex([]))  # Output: 0
+print(sol.hindexbucket([]))  # Output: 0
+print(sol.hindex([1, 2, 3, 4, 5]))  # Output: 3
+print(sol.hindexbucket([1, 2, 3, 4, 5]))  # Output: 3
