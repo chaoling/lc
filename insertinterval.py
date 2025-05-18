@@ -41,18 +41,23 @@ class Solution:
         merged = []
         s, e = newInterval
         done = False
-        for index, interval in enumerate(intervals):
+        for interval in intervals:
+            # Case 1: New interval is completely before current interval
             if e < interval[0]:
-                merged.append([s,e])
-                s, e = interval
+                if not done:
+                    merged.append([s,e])
+                    done = True
+                merged.append(interval)
+            # Case 2: New interval is completely after current interval
             elif s > interval[1]:
                 merged.append(interval)
+            # Case 3: New interval overlaps with current interval
             elif interval[0] <= e <= interval[1] or interval[0] <= s <= interval[1]:
                 s, e = min(s, interval[0]), max(e, interval[1])
-        if (s, e):
+        if not done:
             merged.append([s,e])
         return merged
-    
+     
 if __name__ == "__main__":
     s = Solution()
     print(s.insert([[1,3],[6,9]], [2,5])) # [[1,5],[6,9]]

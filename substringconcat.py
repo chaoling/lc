@@ -150,6 +150,7 @@ class Solution:
                 else:
                     seen.clear()
                     left = right
+        return indices
         
         
 if __name__ == '__main__':
