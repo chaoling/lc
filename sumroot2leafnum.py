@@ -58,9 +58,12 @@ class Solution:
         def dfs(node: TreeNode, total):
             if node is None:
                 return 0
-            total = total * 10 + node.val
+            total = total * 10 + node.val # update the total
+            # if we reach the leaf level, return the total
+            # otherwise, continue to traverse the left and right subtrees
+            # and sum the results
             if node.left is None and node.right is None:
-                #reached the leaf level: add this to total path sum
+                #reached the leaf level
                 return total
             return dfs(node.left, total) + dfs(node.right, total)
 
