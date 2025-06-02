@@ -32,6 +32,7 @@ class LinkedList:
                 else:
                     runner = runner.next
             current = current.next
+
     def print_list(self):
         current = self.head
         while current:
