@@ -24,6 +24,9 @@ The number of nodes in the tree is in the range [1, 104].
 -231 <= Node.val <= 231 - 1
 '''
 # Definition for a binary tree node.
+from collections import deque
+
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -40,6 +43,9 @@ class Solution:
         while queue:
             level_sum = 0
             level_count = len(queue)
+            #At the start of each iteration of the outer while queue: loop, 
+            # the queue only contains all nodes of the current level, (why? because we only add children of nodes that were processed in the previous level)
+            # added during the previous level’s processing.
             
             for _ in range(level_count):
                 node = queue.popleft()
