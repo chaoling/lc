@@ -58,6 +58,5 @@ if __name__ == "__main__":
     root = TreeNode(4)
     root.left = TreeNode(2, TreeNode(1), TreeNode(3))
     root.right = TreeNode(6, None, TreeNode(7))
-    
     solution = Solution()
     print(solution.getMinimumDifference(root))  # Output should be the minimum difference between any two nodes in the BST.
