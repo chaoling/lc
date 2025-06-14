@@ -37,7 +37,7 @@ n == capital.length
 0 <= profits[i] <= 104
 0 <= capital[i] <= 109
 '''
-from heapq import heapify, heappop, heappush
+from heapq import  heappop, heappush, peek
 from typing import List
 
 class Solution:
