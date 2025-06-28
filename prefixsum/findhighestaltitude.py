@@ -21,6 +21,8 @@ Constraints:
 n == gain.length
 1 <= n <= 100
 -100 <= gain[i] <= 100
+Time: O(N)
+Space: O(1)
 '''
 from typing import List
 class Solution:
@@ -30,6 +32,16 @@ class Solution:
             altitude += num
             ans = max(ans, altitude)
         return ans
+    
+    def largestAltitude2(self, gain: List[int]) -> int:
+        """
+        use prefix sum to calculate the altitude at each point
+        """
+        prefix_sum = [0] # starting altitude is 0
+        for g in gain:
+            prefix_sum.append(prefix_sum[-1] + g)
+        return max(prefix_sum)
+        
 
 if __name__ == "__main__":
     s = Solution()
