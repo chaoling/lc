@@ -59,6 +59,38 @@ class Solution:
             max_sum = cur_sum
             max_level = pre_level
         return max_level
+    
+    def maxLevelSum2(self, root: Optional[TreeNode]) -> int:
+        '''
+        This is the O(N) version.
+        Use a queue to perform level order traversal.
+        For each level, calculate the sum of node values and keep track of the maximum sum and the corresponding level.
+        Return the level with the maximum sum.
+        Time complexity: O(N), where N is the number of nodes in the tree.
+        Space complexity: O(N) for the queue in the worst case (when the tree is a complete binary tree).
+        '''
+        if not root:
+            return 0
+        
+        level_sums = []
+        q = deque([root])
+        
+        while q:
+            level_size = len(q)
+            level_sum = 0
+            
+            for _ in range(level_size):
+                node = q.popleft()
+                level_sum += node.val
+                
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+            
+            level_sums.append(level_sum)
+        
+        return level_sums.index(max(level_sums)) + 1
 
 if __name__ == "__main__":
     sol = Solution()
@@ -71,3 +103,12 @@ if __name__ == "__main__":
     root.right.right = TreeNode(6)
     
     print(sol.maxLevelSum(root))  # Output: 2, since level 2 has the maximum sum (2 + 3 = 5)
+    print(sol.maxLevelSum2(root))  # Output: 2, since level 2 has the maximum sum (2 + 3 = 5)
+    # Create another binary tree [1,0,0,7,8,null,null]
+    root2 = TreeNode(1)
+    root2.left = TreeNode(0)
+    root2.right = TreeNode(0)       
+    root2.left.left = TreeNode(7)
+    root2.left.right = TreeNode(8)  
+    print(sol.maxLevelSum(root2))  # Output: 3, since level 3 has the maximum sum (7 + 8 = 15)
+    print(sol.maxLevelSum2(root2))  # Output: 3, since level 3 has the maximum sum (7 + 8 = 15)
