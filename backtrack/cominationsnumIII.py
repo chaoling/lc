@@ -72,6 +72,7 @@ if __name__ == '__main__':
         [4,1],
         [3,2],
         [3,15],
+        [9,45],
     ]
     for k,n in test:
         print(f'k={k}, n={n} => {Solution().combinationSum3(k,n)}')
