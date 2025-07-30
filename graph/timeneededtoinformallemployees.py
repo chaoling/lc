@@ -91,7 +91,7 @@ class Solution:
 from collections import defaultdict
 
 def numOfMinutes(n, headID, manager, informTime):
-    # Step 1: Build the org tree
+    # Step 1: Build the org tree as dictionary
     tree = defaultdict(list)
     for emp, mgr in enumerate(manager):
         if mgr != -1:
